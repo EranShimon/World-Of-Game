@@ -1,6 +1,6 @@
-import random
+#import random
 
-class guessgame:
+class GuessGame:
   def __init__(self, difficulty):
 
     self.difficulty = difficulty
@@ -33,6 +33,10 @@ class guessgame:
       print("Your guess is too high.")
       return False
 
+  def play(self):
+      pass
+
+
 def play(self):
 
     self.generate_number()
@@ -50,7 +54,7 @@ def play(self):
 
  if __name__ == "__main__" :
   difficulty = int(input("Enter the difficulty level (1-10): "))
-  game = guessgame(difficulty)
+  game = GuessGame(difficulty)
   win = game.play()
 
   if not win:

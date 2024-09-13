@@ -1,0 +1,42 @@
+Sept 13, 2024 3:38:31 PM hudson.remoting.Launcher createEngine
+INFO: Setting up agent: WorldOfGame
+Sept 13, 2024 3:38:31 PM hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 3261.v9c670a_4748a_9
+Sept 13, 2024 3:38:31 PM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using https:/github.com/EranShimon/World-Of-Game.git/remoting as a remoting work directory
+Sept 13, 2024 3:38:31 PM hudson.remoting.Engine$1HeaderHandler afterResponse
+WARNING: Did not receive X-Remoting-Capability header
+Sept 13, 2024 3:38:31 PM hudson.remoting.Launcher$CuiListener error
+SEVERE: Handshake error.
+io.jenkins.remoting.shaded.org.glassfish.tyrus.client.exception.DeploymentHandshakeException: Handshake error.
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.exception.Exceptions.deploymentException(Exceptions.java:38)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager$3$1.run(ClientManager.java:622)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager$3.run(ClientManager.java:657)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager$SameThreadExecutorService.execute(ClientManager.java:810)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:123)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager.connectToServer(ClientManager.java:460)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager.lambda$connectToServer$2(ClientManager.java:313)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager.tryCatchInterruptedExecutionEx(ClientManager.java:324)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.ClientManager.connectToServer(ClientManager.java:313)
+	at hudson.remoting.Engine.runWebSocket(Engine.java:788)
+	at hudson.remoting.Engine.run(Engine.java:543)
+Caused by: io.jenkins.remoting.shaded.org.glassfish.tyrus.core.HandshakeException: Response code was not 101: 400.
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.client.TyrusClientEngine.processResponse(TyrusClientEngine.java:308)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.container.jdk.client.ClientFilter.processRead(ClientFilter.java:167)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.container.jdk.client.Filter.onRead(Filter.java:111)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.container.jdk.client.Filter.onRead(Filter.java:113)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.container.jdk.client.Filter.onRead(Filter.java:113)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.container.jdk.client.TransportFilter$4.completed(TransportFilter.java:295)
+	at io.jenkins.remoting.shaded.org.glassfish.tyrus.container.jdk.client.TransportFilter$4.completed(TransportFilter.java:279)
+	at java.base/sun.nio.ch.Invoker.invokeUnchecked(Invoker.java:125)
+	at java.base/sun.nio.ch.UnixAsynchronousSocketChannelImpl.finishRead(UnixAsynchronousSocketChannelImpl.java:447)
+	at java.base/sun.nio.ch.UnixAsynchronousSocketChannelImpl.finish(UnixAsynchronousSocketChannelImpl.java:195)
+	at java.base/sun.nio.ch.UnixAsynchronousSocketChannelImpl.onEvent(UnixAsynchronousSocketChannelImpl.java:217)
+	at java.base/sun.nio.ch.KQueuePort$EventHandlerTask.run(KQueuePort.java:312)
+	at java.base/sun.nio.ch.AsynchronousChannelGroupImpl$1.run(AsynchronousChannelGroupImpl.java:113)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
