@@ -1,4 +1,4 @@
-from Live import load_game, welcome ,choose_game_and_difficulty
+from Live import load_game, welcome #,choose_game_and_difficulty
 
 # Welcome
 user_name = input("Enter your name: ")
@@ -8,8 +8,8 @@ print(welcome_message)
 
 #choice game
 
-game, difficulty = choose_game_and_difficulty()
-print(f"You chose game {game} with difficulty {difficulty}.")
+#game, difficulty = choose_game_and_difficulty()
+#print(f"You chose game {game} with difficulty {difficulty}.")
 
 #load_game
 
