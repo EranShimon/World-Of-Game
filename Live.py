@@ -47,6 +47,7 @@ def load_game():
         print(f"Congratulations! You've won. Your score has been updated.")
     else:
         print("Better luck next time!")
+
 if __name__ == "_main_":
     name = input("Enter your name: ")
     print(welcome(name))

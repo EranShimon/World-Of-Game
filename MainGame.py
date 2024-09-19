@@ -1,5 +1,4 @@
-from Live import load_game, welcome #,choose_game_and_difficulty
-
+from Live import load_game, welcome
 # Welcome
 user_name = input("Enter your name: ")
 

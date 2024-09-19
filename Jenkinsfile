@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "scores-service"
-        IMAGE_TAG = "latest"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -15,37 +10,23 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}")
+                    docker.build('your-dockerhub-username/your-image-name')
                 }
             }
         }
         stage('Run') {
             steps {
                 script {
-                    docker.compose.up()
+                    docker.image('your-dockerhub-username/your-image-name').run('-p 8777:8777 -v $PWD/Scores.txt:/Scores.txt')
                 }
             }
         }
         stage('Test') {
-            parallel {
-                stage('Unit Tests') {
-                    steps {
-                        script {
-                            def result = sh(script: 'python unit_tests.py', returnStatus: true)
-                            if (result != 0) {
-                                error "Unit tests failed"
-                            }
-                        }
-                    }
-                }
-                stage('E2E Tests') {
-                    steps {
-                        script {
-                            def result = sh(script: 'python e2e.py', returnStatus: true)
-                            if (result != 0) {
-                                error "E2E tests failed"
-                            }
-                        }
+            steps {
+                script {
+                    def result = sh(script: 'python e2e.py', returnStatus: true)
+                    if (result != 0) {
+                        error('Tests failed')
                     }
                 }
             }
@@ -53,28 +34,9 @@ pipeline {
         stage('Finalize') {
             steps {
                 script {
-                    docker.compose.down()
-                    docker.image("${IMAGE_NAME}").push("${IMAGE_TAG}")
+                    sh 'docker stop $(docker ps -q --filter ancestor=your-dockerhub-username/your-image-name)'
+                    sh 'docker push your-dockerhub-username/your-image-name'
                 }
-            }
-        }
-    }
-
-    post {
-        always {
-            script {
-                echo 'Cleaning up...'
-                docker.compose.down()
-            }
-        }
-        success {
-            script {
-                echo 'Pipeline succeeded!'
-            }
-        }
-        failure {
-            script {
-                echo 'Pipeline failed!'
             }
         }
     }

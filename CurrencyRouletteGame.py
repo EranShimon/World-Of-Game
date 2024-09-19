@@ -1,61 +1,44 @@
-import requests
 import random
-
+import requests
 
 class CurrencyRouletteGame:
     def __init__(self, difficulty):
         self.difficulty = difficulty
+        self.exchange_rate = self.get_exchange_rate()
 
-    def get_money_interval(self):
-        # Get the current exchange rate from USD to ILS
-        response = requests.get('https://api.exchangerate-api.com/v4/latest/USD')
+    def get_exchange_rate(self):
+        url = "https://api.exchangerate-api.com/v4/latest/USD"
+        response = requests.get(url)
         data = response.json()
-        rate = data['rates']['ILS']
+        return data['rates']['ILS']
 
-        # Generate a random amount of USD
-        t = random.randint(1, 100)
+    def get_money_interval(self, amount):
+        interval = 5 - self.difficulty
+        lower_bound = amount * self.exchange_rate - interval
+        upper_bound = amount * self.exchange_rate + interval
+        return lower_bound, upper_bound
 
-        # Calculate the interval
-        interval = (t * rate - (5 - self.difficulty), t * rate + (5 - self.difficulty))
-        return interval, t
-
-    def get_guess_from_user(self, t):
-        guess = float(input(f"Guess the value of {t} USD in ILS: "))
-        return guess
+    def get_guess_from_user(self, amount):
+        while True:
+            try:
+                guess = float(input(f"Guess the value of {amount} USD in ILS: "))
+                return guess
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
 
     def play(self):
-        interval, t = self.get_money_interval()
-        guess = self.get_guess_from_user(t)
-
-        if interval[0] <= guess <= interval[1]:
-            print("Congratulations! You won!")
+        amount = random.randint(1, 100)
+        lower_bound, upper_bound = self.get_money_interval(amount)
+        guess = self.get_guess_from_user(amount)
+        if lower_bound <= guess <= upper_bound:
+            print("Congratulations! Your guess is within the correct interval.")
             return True
         else:
-            print("Sorry, you lost. Better luck next time!")
+            print(f"Sorry, the correct value was between {lower_bound:.2f} and {upper_bound:.2f}.")
             return False
 
-
-# Function to load the game
-def load_game():
-    print("Please choose a game to play:")
-    print("1. Memory Game")
-    print("2. Guess Game")
-    print("3. Currency Roulette - try and guess the value of a random amount of USD in ILS")
-
-    game_choice = int(input("Enter the number of the game you want to play: "))
-    difficulty = int(input("Enter the difficulty level (1-5): "))
-
-    if game_choice == 1:
-        # Call MemoryGame with the given difficulty
-        pass  # Replace with actual call to MemoryGame
-    elif game_choice == 2:
-        # Call GuessGame with the given difficulty
-        pass  # Replace with actual call to GuessGame
-    elif game_choice == 3:
-        game = CurrencyRouletteGame(difficulty)
-        game.play()
-
-
-# Example usage
+# Example usage:
 if __name__ == "__main__":
-    load_game()
+    difficulty = int(input("Enter the difficulty level (1-5): "))
+    game = CurrencyRouletteGame(difficulty)
+    game.play()
