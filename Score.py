@@ -2,12 +2,12 @@ from Utils import SCORES_FILE_NAME
 
 POINTS_OF_WINNING = lambda d: (d * 3) + 5
 
-def add_score(difficulty):
+def add_score(difficulty: object) -> object:
     try:
-        with open(SCORES_FILE_NAME, 'r+') as file:
+        with open('score_file.txt', 'r+') as file:
             score = int(file.read().strip())
             file.seek(0)
             file.write(str(score + POINTS_OF_WINNING(difficulty)))
     except FileNotFoundError:
-        with open(SCORES_FILE_NAME, 'w') as file:
+        with open('score_file.txt', 'w') as file:
             file.write(str(POINTS_OF_WINNING(difficulty)))
