@@ -17,7 +17,7 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    docker.image('your-dockerhub-username/your-image-name').run('-p 8777:8777 -v $PWD/Scores.txt:/Scores.txt')
+                    docker.image('EranShimon/World-Of-Game').run('-p 8777:8777 -v $PWD/Scores.txt:/Scores.txt')
                 }
             }
         }
@@ -34,8 +34,8 @@ pipeline {
         stage('Finalize') {
             steps {
                 script {
-                    sh 'docker stop $(docker ps -q --filter ancestor=your-dockerhub-username/your-image-name)'
-                    sh 'docker push your-dockerhub-username/your-image-name'
+                    sh 'docker stop $(docker ps -q --filter ancestor=EranShimon/World-Of-Game)'
+                    sh 'docker push EranShimon/World-Of-Game'
                 }
             }
         }
