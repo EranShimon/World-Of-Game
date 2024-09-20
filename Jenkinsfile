@@ -17,7 +17,7 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    docker.image('EranShimon/World-Of-Game').run('-p 8777:8777 -v $PWD/Scores.txt:/Scores.txt')
+                    docker.image('EranShimon/World-Of-Game').run('-p 8777:8777 -v $PWD/scores_file.txt:/scores_file.txt')
                 }
             }
         }
