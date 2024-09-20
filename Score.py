@@ -1,4 +1,3 @@
-
 SCORES_FILE_NAME = "score_file.txt"
 POINTS_OF_WINNING = lambda difficulty: (difficulty * 3) + 5
 
@@ -17,6 +16,6 @@ def add_score(difficulty: int) -> None:
     except IOError as e:
         print(f"An error occurred while writing to the file: {e}")
 
-# Example usage
+
 if __name__ == "_main_":
     add_score(3)

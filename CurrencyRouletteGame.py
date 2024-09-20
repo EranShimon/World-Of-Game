@@ -37,7 +37,7 @@ class CurrencyRouletteGame:
             print(f"Sorry, the correct value was between {lower_bound:.2f} and {upper_bound:.2f}.")
             return False
 
-# Example usage:
+
 if __name__ == "__main__":
     difficulty = int(input("Enter the difficulty level (1-5): "))
     game = CurrencyRouletteGame(difficulty)

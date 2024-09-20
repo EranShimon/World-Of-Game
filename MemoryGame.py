@@ -27,7 +27,7 @@ class MemoryGame:
         print("Remember the following numbers:")
         print(sequence)
         time.sleep(0.7)
-        print("\n" * 50)  # Clear the screen
+        print("\n" * 50)
 
         user_sequence = self.get_list_from_user()
 

@@ -1,10 +1,10 @@
-from flask import Flask, Response
-from Score import add_score
+from flask import Flask
+from Score import *
 from Utils import SCORES_FILE_NAME
 
 app = Flask(__name__)
 
-@app.route('/score')
+@app.route('/')
 def score_server():
     try:
         with open(SCORES_FILE_NAME, 'r') as file:
