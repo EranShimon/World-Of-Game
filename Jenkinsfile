@@ -7,12 +7,6 @@ pipeline {
                 checkout scm
             }
         }
-  
-        stage('Build') {
-            steps {
-                 sh 'docker build -t "$JD_IMAGE" .'
-                }
-            }
        
         stage('Build') {
             steps {
