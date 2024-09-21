@@ -1,23 +1,19 @@
-
-
-
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Build') {
-    steps {
-        echo 'Building Docker image...'
-        script {
-            docker.build("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}")
+            steps {
+                script {
+                    docker.build('EranShimon/worldofgame')
+                }
             }
         }
-    }
         stage('Run') {
             steps {
                 script {
