@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build('https://github.com/EranShimon/World-Of-Game/blob/master/Dockerfile')
+                    docker.build('https://hub.docker.com/r/eranshimon/worldofgame/tags')
                 }
             }
         }
