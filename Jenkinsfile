@@ -9,6 +9,15 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Build') {
+    steps {
+        echo 'Building Docker image...'
+        script {
+            docker.build("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}")
+            }
+        }
+    }
         stage('Run') {
             steps {
                 script {
