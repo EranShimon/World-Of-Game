@@ -10,16 +10,12 @@ pipeline {
     environment {
         PATH = "/Users/EranShimon/.docker"
     }
-    stages {
         stage('Build') {
             steps {
-                sh 'docker build -t "$JD_IMAGE" .'
+                 sh 'docker build -t "$JD_IMAGE" .'
                 }
             }
-       }
-   }
-
-        
+       
         stage('Build') {
             steps {
                 script {
