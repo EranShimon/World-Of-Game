@@ -7,9 +7,7 @@ pipeline {
                 checkout scm
             }
         }
-    environment {
-        PATH = "/Users/EranShimon/.docker"
-    }
+  
         stage('Build') {
             steps {
                  sh 'docker build -t "$JD_IMAGE" .'
