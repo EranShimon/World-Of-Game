@@ -1,24 +1,12 @@
+
+
+
 pipeline {
     agent any
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
-            }
-        }
-        environment {
-            PATH = "/Users/EranShimon/.docker"
-        }
-        stage('Build') {
-            steps {
-                sh 'docker build -t "$JD_IMAGE" .'
-            }
-        }
-        stage('Build') {
-            steps {
-                script {
-                    docker.build('EranShimon/worldofgame')
-                }
             }
         }
         stage('Run') {
