@@ -6,19 +6,7 @@ pipeline {
             steps {
                 checkout scm
             }
-        }
-    docker {
-        image 'docker:latest'
-            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'docker build -t "$JD_IMAGE" .'
-            }
-        }
-
-        
+   
         stage('Build') {
             steps {
                 script {
