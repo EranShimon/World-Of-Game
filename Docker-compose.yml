@@ -3,6 +3,7 @@ version: '3'
 services:
   scores-service:
     build: .
+    image: eranshimon/worldofgame:latest
     ports:
       - "8777:8777"
     volumes:

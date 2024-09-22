@@ -16,6 +16,6 @@ def test_scores_service(url):
         return False
 
 def main_function():
-    url = 'http://localhost:8777/score'
+    url = 'http://localhost:8777/'
     result = test_scores_service(url)
     return 0 if result else -1

@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build('eranshimon/worldofgame:latest')
+                    docker.build('eranshimon/worldofgame:tagname')
                 }
             }
         }
