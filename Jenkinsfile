@@ -4,39 +4,36 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // Checkout the repository
+                git 'https://github.com/EranShimon/World-Of-Game.git'
             }
         }
         stage('Build') {
             steps {
-                script {
-                    docker.build('eranshimon/worldofgame:tagname')
-                }
+                // Build your Docker image
+                sh 'docker build -t games_img .'
             }
         }
         stage('Run') {
             steps {
-                script {
-                    docker.image('eranshimon/worldofgame:tagname').run('-p 8777:8777 -v $PWD/Scores.txt:/Scores.txt')
-                }
+                // Run your Dockerized application
+                sh 'docker run -d -p 8777:8777 -v Scores.txt:/app/Scores.txt --name games_cont games_img'
             }
         }
         stage('Test') {
             steps {
-                script {
-                    def result = sh(script: 'python e2e.py', returnStatus: true)
-                    if (result != 0) {
-                        error('Tests failed')
-                    }
-                }
+                // Run your Selenium tests
+                sh 'python e2e.py'
             }
         }
         stage('Finalize') {
             steps {
-                script {
-                    sh 'docker stop $(docker ps -q --filter ancestor=eranshimon/worldofgame:tagname)'
-                    sh 'docker push eranshimon/worldofgame:tagname'
-                }
+                // Stop and remove the Docker container
+                sh 'docker stop games_cont'
+                sh 'docker rm games_cont'
+
+                // Push the Docker image to DockerHub
+                sh 'docker push games_img'
             }
         }
     }
