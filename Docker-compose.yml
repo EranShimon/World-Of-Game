@@ -1,10 +1,19 @@
-version: '3'
+version: '3.8'
 
 services:
-  scores-service:
+  flask-app:
     build: .
-    image: eranshimon/worldofgame:latest
     ports:
-      - "8777:8777"
+      - "5001:5000"
+#    scores-service:
+#      build: .
+#      image: EranShimon/worldofgame:latest
+#      ports:
+#        - "8777:8777"
+
     volumes:
-      - ./scores_file.txt:/app/scores_file.txt
+      - ./MainScores.py:/app/MainScores.py
+      - ./Scores.txt:/app/Scores.txt
+    environment:
+      - FLASK_APP=MainScores.py
+    command: flask run --host=0.0.0.0

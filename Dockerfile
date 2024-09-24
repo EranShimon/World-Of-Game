@@ -1,15 +1,8 @@
-FROM python:3.9-slim
-
+FROM python:3-alpine
 WORKDIR /app
-
-COPY Requirements.txt /app
-RUN pip install --upgrade pip
-RUN pip install -r Requirements.txt
-
 COPY . /app
-
-EXPOSE 8777
-
-COPY score_file.txt /score_file.txt
-
-CMD ["python", "MainScores.py"]
+RUN pip install --no-cache-dir -r Requirements.txt
+COPY score_file.txt /scores_file.txt
+ENV FLASK_APP=MainScores.py
+EXPOSE 5000
+CMD ["flask", "run", "--host=0.0.0.0"]
