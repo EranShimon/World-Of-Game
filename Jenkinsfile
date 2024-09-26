@@ -20,12 +20,7 @@ pipeline {
                 sh 'docker run -d -p 8777:8777 --name games_cont games_img'
             }
         }
-        stages {
-        stage('Install Dependencies') {
-            steps {
-                sh 'pip install selenium --verbose'
-            }
-        }
+
         stage('Test') {
             steps {
                 // Run your Selenium tests
