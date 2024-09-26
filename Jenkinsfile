@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your Selenium tests
-                sh 'python ./e2e.py'
+                sh 'python Tests/e2e.py'
             }
         }
         stage('Finalize') {
