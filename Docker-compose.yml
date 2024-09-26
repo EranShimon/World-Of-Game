@@ -1,19 +1,18 @@
 version: '3.8'
 
 services:
-  flask-app:
+  jenkins:
     build: .
+    network_mode: "bridge"
+    container_name: jenkins
     ports:
-      - "5001:5000"
-#    scores-service:
-#      build: .
-#      image: EranShimon/worldofgame:latest
-#      ports:
-#        - "8777:8777"
-
-    volumes:
-      - ./MainScores.py:/app/MainScores.py
-      - ./Scores.txt:/app/Scores.txt
+      - "8080:8080"
+      - "50000:50000"
     environment:
-      - FLASK_APP=MainScores.py
-    command: flask run --host=0.0.0.0
+      JENKINS_USER: admin
+      JENKINS_PASS: admin
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=true -Djenkins.httpPort=8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock # To run Docker commands inside the container
+      - ~/.kube/config:/root/.kube/config
