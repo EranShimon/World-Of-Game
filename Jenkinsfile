@@ -23,8 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your Selenium tests
-                sh 'ls -la /var/jenkins_home/workspace/WOG'
-                sh 'python e2e.py'
+                sh 'python WorldOfGame/Tests/e2e.py'
             }
         }
         stage('Finalize') {
