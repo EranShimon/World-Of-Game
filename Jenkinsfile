@@ -23,6 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your Selenium tests
+                sh 'ls -la /var/jenkins_home/workspace/WOG'
                 sh 'python e2e.py'
             }
         }
