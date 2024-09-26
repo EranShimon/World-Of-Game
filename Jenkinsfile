@@ -17,13 +17,13 @@ pipeline {
         stage('Run') {
             steps {
                 // Run your Dockerized application
-                sh 'docker run -d -p 8777:8777 -v Scores.txt:/app/Scores.txt --name games_cont games_img'
+                sh 'docker run -d -p 8777:8777 --name games_cont games_img'
             }
         }
         stage('Test') {
             steps {
                 // Run your Selenium tests
-                sh 'python WorldOfGame/Tests/e2e.py'
+                sh 'python Tests/e2e.py'
             }
         }
         stage('Finalize') {
