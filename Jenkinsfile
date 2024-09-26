@@ -23,7 +23,7 @@ pipeline {
         stages {
         stage('Install Dependencies') {
             steps {
-                sh 'pip install selenium'
+                sh 'pip install selenium --verbose'
             }
         }
         stage('Test') {
