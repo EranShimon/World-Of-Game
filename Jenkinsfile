@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your Selenium tests
-                sh 'WorldOfGame/Tests/python e2e.py'
+                sh 'python e2e.py'
             }
         }
         stage('Finalize') {

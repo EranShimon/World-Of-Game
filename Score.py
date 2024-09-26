@@ -1,4 +1,4 @@
-SCORES_FILE_NAME = "score_file.txt"
+SCORES_FILE_NAME = "Score.txt.txt"
 POINTS_OF_WINNING = lambda difficulty: (difficulty * 3) + 5
 
 def add_score(difficulty: int) -> None:

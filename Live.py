@@ -54,7 +54,7 @@ def load_game():
 
         new_score = current_score + POINTS_OF_WINNING(difficulty)
 
-        with open('score_file.txt', 'w') as file:
+        with open('Score.txt', 'w') as file:
             file.write(str(new_score))
 
         print(f"Congratulations! You've won. Your score has been updated.")

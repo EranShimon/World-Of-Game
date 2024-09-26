@@ -2,6 +2,7 @@ from flask import Flask
 from Score import *
 from Utils import SCORES_FILE_NAME
 
+
 app = Flask(__name__)
 
 @app.route('/')
