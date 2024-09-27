@@ -25,7 +25,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your Selenium tests
-                sh ' ./WorldOfGame/. && /WorldOfGame/venv/bin/python ./Tests/e2e.py'
+                sh ' /Users/EranShimon/Desktop/DEVOPS/Final Project/WorldOfGame/. && /WorldOfGame/venv/bin/python ./Tests/e2e.py'
             }
         }
         stage('Finalize') {
