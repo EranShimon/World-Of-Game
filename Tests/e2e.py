@@ -9,6 +9,7 @@ from selenium.webdriver.remote.webelement import WebElement
 url = "http://127.0.0.1:5000"
 
 def test_scores_service(url):
+    global driver
     try:
         # Set up Chrome WebDriver
         driver = webdriver.Chrome()
