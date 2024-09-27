@@ -2,6 +2,16 @@ pipeline {
     agent any
 
     stages {
+        stage('Check Python Environment') {
+            steps {
+                sh 'python --version'
+                sh 'pip list'
+            }
+        }
+    }
+
+    
+    stages {
         stage('Checkout') {
             steps {
                 // Checkout the repository
