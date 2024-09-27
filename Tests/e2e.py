@@ -24,11 +24,9 @@ def test_scores_service(url):
             return True
         else:
             return False
-
     except Exception as e:
         print(f"Error occurred: {e}")
         return False
-
     finally:
         # Close the WebDriver
         driver.quit()
